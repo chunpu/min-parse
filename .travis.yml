@@ -1,0 +1,7 @@
+language: node_js
+branches:
+  only:
+  - gh-pages
+env:
+  global:
+  - SAUCE_USERNAME: chunpu

@@ -1,0 +1,32 @@
+{
+  "name": "min-parse",
+  "version": "1.0.0",
+  "description": "parse xml, json, html for browser",
+  "main": "index.js",
+  "scripts": {
+    "test": "browserify test.js | poor -b ie:6..8,chrome",
+    "readme": "pretty-readme > readme.md"
+  },
+  "author": "chunpu",
+  "license": "ISC",
+  "dependencies": {
+    "is": "^2.2.0",
+    "lodash": "^3.0.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chunpu/min-parse.git"
+  },
+  "keywords": [
+    "parse",
+    "xml",
+    "json",
+    "html",
+    "jquery"
+  ],
+  "bugs": {
+    "url": "https://github.com/chunpu/min-parse/issues"
+  },
+  "homepage": "https://github.com/chunpu/min-parse"
+}
