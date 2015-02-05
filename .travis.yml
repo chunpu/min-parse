@@ -5,3 +5,4 @@ branches:
 env:
   global:
   - SAUCE_USERNAME: chunpu
+  - secure: CO6LvZMIz7Du3e4ySOQTA1yVrSAfQs844sY3yDgTbYczCoqcOwIpf9FaH8Mfo+Ks5eIRdxzY6rzR3s9s+R1xRXERR3rRbzVuDOl1MaFjtAUTFVRyttA+LJj2s+e5LiUcFltIVTGtljKwuWYP57gi/I1+9pusIbzwPSYQIkA7SQ0=

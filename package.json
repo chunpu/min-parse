@@ -1,7 +1,7 @@
 {
   "name": "min-parse",
   "version": "1.0.0",
-  "description": "parse xml, json, html for browser",
+  "description": "XML JSON HTML parser for browser from IE6+",
   "main": "index.js",
   "scripts": {
     "test": "browserify test.js | poor -b ie:6..8,chrome",

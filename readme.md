@@ -5,7 +5,7 @@ min-parse
 [![NPM version][npm-image]][npm-url]
 [![Downloads][downloads-image]][downloads-url]
 
-parse xml, json, html for browser
+XML JSON HTML parser for browser from IE6+
 
 Installation
 ---
