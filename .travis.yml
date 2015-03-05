@@ -4,5 +4,5 @@ branches:
   - gh-pages
 env:
   global:
-  - SAUCE_USERNAME: chunpu
-  - secure: CO6LvZMIz7Du3e4ySOQTA1yVrSAfQs844sY3yDgTbYczCoqcOwIpf9FaH8Mfo+Ks5eIRdxzY6rzR3s9s+R1xRXERR3rRbzVuDOl1MaFjtAUTFVRyttA+LJj2s+e5LiUcFltIVTGtljKwuWYP57gi/I1+9pusIbzwPSYQIkA7SQ0=
+  - SAUCE_USERNAME: chunpu2
+  - secure: YaPv+s4Ul9QI5PjIhs/nD6DV/TgJNOiVOKuelrXqyCKZTOuxoFcLgyxYJ58c6ssBD+S26JnbwGnq86dzSrKKrDnQFLoc7vAT1hTuN7Wuvs1YpiiazKTXptVszfbi/HLA6/AvrHppRqeTEY7mD+AfO11NMHS5aMPYfwbkD87UL4A=

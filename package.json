@@ -10,8 +10,8 @@
   "author": "chunpu",
   "license": "ISC",
   "dependencies": {
-    "is": "^2.2.0",
-    "lodash": "^3.0.1"
+    "min-is": "^1.1.4",
+    "min-util": "^1.2.2"
   },
   "devDependencies": {
     "poor": "^1.1.3",

@@ -1,9 +1,9 @@
-var _ = require('lodash')
-var is = require('is')
+var _ = require('min-util')
+var is = require('min-is')
 
 exports.html = function(str, box) {
 	// unsafe html, e.g. `<script>`
-	if (is.string(str)) {
+	if (is.str(str)) {
 		box = box || document
 		var div = box.createElement('div')
 		div.innerHTML = str + ''
