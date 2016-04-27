@@ -13,8 +13,13 @@ exports.html = function(str, box) {
 }
 
 exports.xml = function(str) {
+	// should not throw an error, because api never throw, and still get xml even error
+	// https://developer.mozilla.org/en-US/docs/Web/API/DOMParser
+	// but we give the error info, only first error is returned
+	// https://developer.mozilla.org/en-US/docs/Web/API/DOMParser
 	str = str + ''
 	var xml
+	var error
 	try {
 		if (global.DOMParser) {
 			var parser = new DOMParser()
@@ -25,14 +30,20 @@ exports.xml = function(str) {
 			xml.loadXML(str)
 		}
 	} catch (e) {
-		xml = undefined
+		error = e
 	}
-	if (xml && xml.documentElement) {
-		if (!xml.getElementsByTagName('parsererror').length) {
-			return xml
+	xml = xml || {}
+	if (xml.getElementsByTagName) {
+		var parsererror = xml.getElementsByTagName('parsererror')[0]
+		if (parsererror) {
+			var message = parsererror.textContent
+			error = new Error(message)
 		}
 	}
-	throw new Error('Invalid XML: ' + str)
+	if (error) {
+		xml.error = error
+	}
+	return xml
 }
 
 var JSON = global.JSON || {}
