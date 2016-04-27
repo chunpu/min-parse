@@ -46,29 +46,20 @@
 
 	var parse = __webpack_require__(1)
 
-	var xmlErrorStr = `
-	<a>
-		<b b="b"></b>
-		<c c=c></c>
-	</a>
-	`
+	var xmlErrorStr = '<a>	<b b="b"></b>	<c c=c></c></a>'
 
-	var xmlOKStr = `
-	<a>
-		<b b="b"></b>
-		<c c="c"></c>
-	</a>
-	`
+	var xmlOKStr = '<a>	<b b="b"></b>	<c c="c"></c></a>'
 
 	test(xmlErrorStr)
 	test(xmlOKStr)
 
 	function test(xmlStr) {
-		var xml = parse.xml(xmlStr)
-		console.log(xml)
-		if (xml.error) {
-			console.error(xml.error)
-		}
+		var xml = parse.xml(xmlStr, function(err, xml) {
+			console.log(xml)
+			if (err) {
+				console.error(err)
+			}
+		})
 	}
 
 
@@ -90,7 +81,7 @@
 		return []
 	}
 
-	exports.xml = function(str) {
+	exports.xml = function(str, cb) {
 		// should not throw an error, because api never throw, and still get xml even error
 		// https://developer.mozilla.org/en-US/docs/Web/API/DOMParser
 		// but we give the error info, only first error is returned
@@ -110,16 +101,19 @@
 		} catch (e) {
 			error = e
 		}
-		xml = xml || {}
-		if (xml.getElementsByTagName) {
-			var parsererror = xml.getElementsByTagName('parsererror')[0]
-			if (parsererror) {
-				var message = parsererror.textContent
-				error = new Error(message)
+		if (!error) {
+			if (xml && xml.documentElement) {
+				var parsererror = xml.getElementsByTagName('parsererror')[0]
+				if (parsererror) {
+					var message = parsererror.textContent
+					error = new Error(message)
+				}
+			} else {
+				error = new Error('parse error')
 			}
 		}
-		if (error) {
-			xml.error = error
+		if (is.fn(cb)) {
+			cb(error, xml)
 		}
 		return xml
 	}

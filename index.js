@@ -12,7 +12,7 @@ exports.html = function(str, box) {
 	return []
 }
 
-exports.xml = function(str) {
+exports.xml = function(str, cb) {
 	// should not throw an error, because api never throw, and still get xml even error
 	// https://developer.mozilla.org/en-US/docs/Web/API/DOMParser
 	// but we give the error info, only first error is returned
@@ -32,16 +32,28 @@ exports.xml = function(str) {
 	} catch (e) {
 		error = e
 	}
-	xml = xml || {}
-	if (xml.getElementsByTagName) {
-		var parsererror = xml.getElementsByTagName('parsererror')[0]
-		if (parsererror) {
-			var message = parsererror.textContent
-			error = new Error(message)
+	if (!error) {
+		if (xml) {
+			if (xml.documentElement) {
+				var parsererror = xml.getElementsByTagName('parsererror')[0]
+				if (parsererror) {
+					var message = parsererror.textContent
+					error = new Error(message)
+				}
+			} else {
+				var parseError = xml.parseError
+				if (parseError) {
+					// old IE
+					// errorCode, reason, line
+					error = new Error('line' + ' ' + parseError.line + ':' + ' ' + parseError.reason)
+				}
+			}
+		} else {
+			error = new Error('parse error')
 		}
 	}
-	if (error) {
-		xml.error = error
+	if (is.fn(cb)) {
+		cb(error, xml)
 	}
 	return xml
 }

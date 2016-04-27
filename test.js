@@ -9,13 +9,10 @@ describe('xml', function() {
 		var ps = xml.getElementsByTagName('p')
 		assert(1 == ps.length)
 	})
-	it('should error', function(done) {
-		try {
-			var xml = parse.xml('-------')
-		} catch (e) {
-			assert(e)
-			done()
-		}
+	it('should contains error', function() {
+		var xml = parse.xml('-------', function(err, xml) {
+			assert(err instanceof Error, 'should error')
+		})
 	})
 })
 
