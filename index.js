@@ -1,5 +1,5 @@
 var _ = require('min-util')
-var is = require('min-is')
+var is = _.is
 
 exports.html = function(str, box) {
 	// unsafe html, e.g. `<script>`
